@@ -1,0 +1,5 @@
+{
+  "name": "Visualizador Transformada de Clarke",
+  "description": "Uma animação interativa e educacional demonstrando a Transformada de Clarke (Trifásico para Bifásico) em tempo real.",
+  "requestFramePermissions": []
+}
