@@ -32,11 +32,11 @@ const App: React.FC = () => {
   const historyClarkeRef = useRef<number[][]>(Array(HISTORY_LENGTH).fill([0, 0]));
   const historyParkRef = useRef<number[][]>(Array(HISTORY_LENGTH).fill([0, 0]));
 
-  const requestRef = useRef<number>();
-  const lastTimeRef = useRef<number>();
+  const requestRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number | null>(null);
 
   const animate = useCallback((time: number) => {
-    if (lastTimeRef.current !== undefined) {
+    if (lastTimeRef.current !== null) {
       const deltaTime = (time - lastTimeRef.current) / 1000;
       
       setState((prevState) => {
@@ -69,7 +69,7 @@ const App: React.FC = () => {
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
     return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      if (requestRef.current !== null) cancelAnimationFrame(requestRef.current);
     };
   }, [animate]);
 
